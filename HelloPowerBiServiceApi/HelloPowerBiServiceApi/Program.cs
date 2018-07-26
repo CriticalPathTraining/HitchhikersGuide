@@ -8,7 +8,7 @@ class Program {
   static string resourceUriPowerBi = "https://analysis.windows.net/powerbi/api";
   static string urlPowerBiRestApiRoot = "https://api.powerbi.com/";
 
-  public const string clientId = "315e87eb-a6a0-4886-9b20-9f7ecdaca888";
+  public const string clientId = "01139d48-bac8-4811-bb7b-4f749cb04e1c";
   public const string redirectUrl = "https://localhost/app1234";
 
   static string GetAccessToken() {

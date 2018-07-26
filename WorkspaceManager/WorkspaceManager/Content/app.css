@@ -1,8 +1,9 @@
-﻿body {
-   background-image: url(img/background.jpg);
+﻿
+
+body {
+  background-image: url(img/background.jpg);
   background-size: auto;
   background-repeat: round;
-
 }
 
 
@@ -64,10 +65,9 @@ h2 {
   margin-top: 16px;
   font-size: 1.35rem;
   color: DarkBlue;
- border-bottom: 2px solid darkblue;
- padding-bottom: 2px;
+  border-bottom: 2px solid darkblue;
+  padding-bottom: 2px;
   margin-bottom: 8px;
- 
 }
 
 h3 {

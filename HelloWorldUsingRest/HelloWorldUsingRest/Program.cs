@@ -21,7 +21,7 @@ namespace HelloWorldUsingRest {
     public const string restUrlReports = "https://api.powerbi.com/v1.0/myorg/reports/";
 
 
-    public const string ClientID = "315e87eb-a6a0-4886-9b20-9f7ecdaca888";
+    public const string ClientID = "01139d48-bac8-4811-bb7b-4f749cb04e1c";
     public const string RedirectUri = "https://localhost/app1234";
 
     protected static string AccessToken = string.Empty;
@@ -31,21 +31,21 @@ namespace HelloWorldUsingRest {
       // create new authentication context 
       var authenticationContext = new AuthenticationContext(AzureAuthorizationEndpoint);
 
-      //// use authentication context to trigger user sign-in and return access token 
-      //var userAuthnResult = authenticationContext.AcquireTokenAsync(PowerBiServiceResourceUri,
-      //                                                         ClientID,
-      //                                                         new Uri(RedirectUri),
-      //                                                         new PlatformParameters(PromptBehavior.Auto)).Result;
+      // use authentication context to trigger user sign-in and return access token 
+      var userAuthnResult = authenticationContext.AcquireTokenAsync(PowerBiServiceResourceUri,
+                                                               ClientID,
+                                                               new Uri(RedirectUri),
+                                                               new PlatformParameters(PromptBehavior.Auto)).Result;
 
       // use authentication context to trigger user sign-in and return access token 
 
-      string userPassword = System.Configuration.ConfigurationManager.AppSettings["userPassword"];
-      string userName = "tedp@sharepointconfessions.onMicrosoft.com";
+      //string userPassword = System.Configuration.ConfigurationManager.AppSettings["userPassword"];
+      //string userName = "tedp@BizAppSummit.onMicrosoft.com";
 
-      UserPasswordCredential creds = new UserPasswordCredential(userName, userPassword);
-      var userAuthnResult = authenticationContext.AcquireTokenAsync(PowerBiServiceResourceUri,
-                                                               ClientID,
-                                                               creds).Result;
+      //UserPasswordCredential creds = new UserPasswordCredential(userName, userPassword);
+      //var userAuthnResult = authenticationContext.AcquireTokenAsync(PowerBiServiceResourceUri,
+      //                                                         ClientID,
+      //                                                         creds).Result;
 
       // cache access token in AccessToken field
       AccessToken = userAuthnResult.AccessToken;
@@ -71,10 +71,8 @@ namespace HelloWorldUsingRest {
       }
     }
 
-
     static void Main() {
       GetAccessToken();
-
       DisplayWorkspaceContents();
     }
 

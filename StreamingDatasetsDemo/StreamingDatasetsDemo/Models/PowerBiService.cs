@@ -18,7 +18,7 @@ namespace StreamingDatasetsDemo {
     public const string PowerBiServiceRootUrl = "https://api.powerbi.com/v1.0/myorg/";
     public const string restUrlDatasets = PowerBiServiceRootUrl + "datasets";
 
-    public const string ClientID = "315e87eb-a6a0-4886-9b20-9f7ecdaca888";
+    public const string ClientID = "01139d48-bac8-4811-bb7b-4f749cb04e1c";
     public const string RedirectUri = "https://localhost/app1234";
 
     #region "Authentication Details"
@@ -37,7 +37,7 @@ namespace StreamingDatasetsDemo {
       //                                                         new PlatformParameters(PromptBehavior.Auto)).Result;
 
       // use authentication context to trigger user sign-in and return access token 
-      UserPasswordCredential creds = new UserPasswordCredential("yyy@xxx.onMicrosoft.com", "");
+      UserPasswordCredential creds = new UserPasswordCredential("tedp@BizAppSummit.onMicrosoft.com", "Pa$$word!");
       var userAuthnResult = authenticationContext.AcquireTokenAsync(PowerBiServiceResourceUri,
                                                                ClientID,
                                                                creds).Result;

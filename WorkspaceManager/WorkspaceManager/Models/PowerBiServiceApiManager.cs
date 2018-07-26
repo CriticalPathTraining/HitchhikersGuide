@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 using System.Web;
 using Microsoft.PowerBI.Api.V2;
 using Microsoft.PowerBI.Api.V2.Models;
-using Creds = Microsoft.PowerBI.Api.V2.Models.Credentials;
 using Microsoft.Rest;
 using System.Threading;
 using System.Diagnostics;
@@ -78,19 +77,19 @@ namespace WorkspaceManager.Models {
 
     public static async Task<IList<Group>> GetWorkspacesAsync() {
       PowerBIClient pbiClient = GetPowerBiClient();
-      return (await pbiClient.Groups.GetGroupsAsync()).Value;
+      return (await pbiClient.Groups.GetGroupsAsAdminAsync()).Value;
     }
 
     public static async Task<WorkspaceViewModel> GetWorkspaceAsync(string WorkspaceId) {
 
       PowerBIClient pbiClient = GetPowerBiClient();
 
-      var workspaces = (await pbiClient.Groups.GetGroupsAsync()).Value;
+      var workspaces = (await pbiClient.Groups.GetGroupsAsAdminAsync()).Value;
       var workspace = workspaces.Where(ws => ws.Id.Equals(WorkspaceId)).FirstOrDefault();
       var workspaceUsers = (await pbiClient.Groups.GetGroupUsersAsync(WorkspaceId)).Value;
-      var datasets = (await pbiClient.Datasets.GetDatasetsInGroupAsync(WorkspaceId)).Value;
-      var reports = (await pbiClient.Reports.GetReportsInGroupAsync(WorkspaceId)).Value;
-      var dashboards = (await pbiClient.Dashboards.GetDashboardsInGroupAsync(WorkspaceId)).Value;
+      var datasets = (await pbiClient.Datasets.GetDatasetsInGroupAsAdminAsync(WorkspaceId)).Value;
+      var reports = (await pbiClient.Reports.GetReportsInGroupAsAdminAsync(WorkspaceId)).Value;
+      var dashboards = (await pbiClient.Dashboards.GetDashboardsInGroupAsAdminAsync(WorkspaceId)).Value;
 
       WorkspaceViewModel viewModel = new WorkspaceViewModel {
         Id = workspace.Id,
@@ -132,8 +131,11 @@ namespace WorkspaceManager.Models {
     public static async Task<DatasetViewModel> GetDatasetAsync(string WorkspaceId, string DatasetId) {
 
       PowerBIClient pbiClient = GetPowerBiClient();
-      Dataset dataset = (await pbiClient.Datasets.GetDatasetByIdInGroupAsync(WorkspaceId, DatasetId));
-      IList<Datasource> datasources = (await pbiClient.Datasets.GetDatasourcesInGroupAsync(WorkspaceId, DatasetId)).Value;
+      IList<Dataset> datasets = (await pbiClient.Datasets.GetDatasetsInGroupAsAdminAsync(WorkspaceId)).Value;
+
+      var dataset = datasets.Where(ds => ds.Id.Equals(DatasetId)).Single();
+
+      IList<Datasource> datasources = (await pbiClient.Datasets.GetDatasourcesAsAdminAsync(DatasetId)).Value;
       IList<Refresh> refreshHistory = null;
 
       if (dataset.IsRefreshable == true) {
@@ -164,9 +166,9 @@ namespace WorkspaceManager.Models {
       GroupCreationRequest createRequest = new GroupCreationRequest(WorkspaceName);
       var workspace = await pbiClient.Groups.CreateGroupAsync(createRequest);
 
-      var secondaryAdmin = "pbiemasteruser@sharepointconfessions.onmicrosoft.com";
-      var userRights = new GroupUserAccessRight("Admin", secondaryAdmin);
-      await pbiClient.Groups.AddGroupUserAsync(workspace.Id, userRights);
+      //var secondaryAdmin = "pbiemasteruser@sharepointconfessions.onmicrosoft.com";
+      //var userRights = new GroupUserAccessRight("Admin", secondaryAdmin);
+      //await pbiClient.Groups.AddGroupUserAsync(workspace.Id, userRights);
 
       return workspace;
 
@@ -204,11 +206,11 @@ namespace WorkspaceManager.Models {
               var datasourceId = datasource.DatasourceId;
               var gatewayId = datasource.GatewayId;
               // create credentials for Azure SQL database log in
-              Creds.BasicCredentials creds = new Creds.BasicCredentials("CptStudent", "pass@word1");
-              CredentialDetails details = new CredentialDetails(creds);
-              UpdateDatasourceRequest req = new UpdateDatasourceRequest(details);
+              BasicCredentials creds = new BasicCredentials("CptStudent", "pass@word1");
+              CredentialDetails details = new CredentialDetails();
+              UpdateDatasourceRequest req = new UpdateDatasourceRequest();
               // Update credentials through gateway
-              await pbiClient.Gateways.UpdateDatasourceAsync(gatewayId, datasourceId, details);
+              await pbiClient.Gateways.UpdateDatasourceAsync(gatewayId, datasourceId, req);
             }
           }
         }
@@ -228,11 +230,10 @@ namespace WorkspaceManager.Models {
               var datasourceId = datasource.DatasourceId;
               var gatewayId = datasource.GatewayId;
               // create credentials for Azure SQL database log in
-              Creds.AnonymousCredentials creds = new Creds.AnonymousCredentials();
-              CredentialDetails details = new CredentialDetails(creds);
+              CredentialDetails details = new CredentialDetails("");
               UpdateDatasourceRequest req = new UpdateDatasourceRequest(details);
               // Update credentials through gateway
-              await pbiClient.Gateways.UpdateDatasourceAsync(gatewayId, datasourceId, details);
+              await pbiClient.Gateways.UpdateDatasourceAsync(gatewayId, datasourceId, req);
             }
           }
         }

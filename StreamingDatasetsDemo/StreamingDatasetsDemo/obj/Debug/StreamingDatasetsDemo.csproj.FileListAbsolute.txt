@@ -1,0 +1,14 @@
+C:\HitchhikersGuide\StreamingDatasetsDemo\StreamingDatasetsDemo\bin\Debug\StreamingDatasetsDemo.exe.config
+C:\HitchhikersGuide\StreamingDatasetsDemo\StreamingDatasetsDemo\bin\Debug\StreamingDatasetsDemo.exe
+C:\HitchhikersGuide\StreamingDatasetsDemo\StreamingDatasetsDemo\bin\Debug\StreamingDatasetsDemo.pdb
+C:\HitchhikersGuide\StreamingDatasetsDemo\StreamingDatasetsDemo\bin\Debug\Microsoft.IdentityModel.Clients.ActiveDirectory.dll
+C:\HitchhikersGuide\StreamingDatasetsDemo\StreamingDatasetsDemo\bin\Debug\Newtonsoft.Json.dll
+C:\HitchhikersGuide\StreamingDatasetsDemo\StreamingDatasetsDemo\bin\Debug\Microsoft.IdentityModel.Clients.ActiveDirectory.xml
+C:\HitchhikersGuide\StreamingDatasetsDemo\StreamingDatasetsDemo\bin\Debug\Newtonsoft.Json.xml
+C:\HitchhikersGuide\StreamingDatasetsDemo\StreamingDatasetsDemo\obj\Debug\StreamingDatasetsDemo.csprojAssemblyReference.cache
+C:\HitchhikersGuide\StreamingDatasetsDemo\StreamingDatasetsDemo\obj\Debug\StreamingDatasetsDemo.Properties.Resources.resources
+C:\HitchhikersGuide\StreamingDatasetsDemo\StreamingDatasetsDemo\obj\Debug\StreamingDatasetsDemo.csproj.GenerateResource.cache
+C:\HitchhikersGuide\StreamingDatasetsDemo\StreamingDatasetsDemo\obj\Debug\StreamingDatasetsDemo.csproj.CoreCompileInputs.cache
+C:\HitchhikersGuide\StreamingDatasetsDemo\StreamingDatasetsDemo\obj\Debug\StreamingDatasetsDemo.csproj.CopyComplete
+C:\HitchhikersGuide\StreamingDatasetsDemo\StreamingDatasetsDemo\obj\Debug\StreamingDatasetsDemo.exe
+C:\HitchhikersGuide\StreamingDatasetsDemo\StreamingDatasetsDemo\obj\Debug\StreamingDatasetsDemo.pdb
